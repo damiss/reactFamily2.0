@@ -1,4 +1,5 @@
 const path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
     /* 入口 */
@@ -29,5 +30,17 @@ module.exports = {
         historyApiFallback: true,
         host: '0.0.0.0',
         hot: true
-    }
+    },
+    /* 别名配置,无论在哪个路径下,引用都可以直接引用 */
+    resolve: {
+        alias: {
+            pages: path.join(__dirname, 'src/pages'),
+            component: path.join(__dirname, 'src/component'),
+            router: path.join(__dirname, 'src/router'),
+            actions: path.join(__dirname, 'src/redux/actions'),
+            reducers: path.join(__dirname, 'src/redux/reducers')
+        }
+    },
+
+    plugins: [new webpack.HotModuleReplacementPlugin()]
 }
